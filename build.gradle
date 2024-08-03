@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Testing frameworks
+    implementation 'org.testng:testng:7.9.0'
+    //selenium
+    implementation 'org.seleniumhq.selenium:selenium-java:4.21.0'
+    implementation 'net.lightbody.bmp:browsermob-core:2.1.5'
+    //monkey
+    implementation 'io.github.bonigarcia:webdrivermanager:5.6.2'
+    implementation 'org.slf4j:slf4j-api:1.7.32'
+    implementation 'ch.qos.logback:logback-classic:1.2.6'
+    implementation 'ch.qos.logback:logback-classic:1.2.10'
+    implementation 'ch.qos.logback:logback-classic:1.2.10'
+
+
+}
+test {
+    useTestNG() {
+        useDefaultListeners = true
+        suites 'src/main/resources/testng.xml'
+        outputDirectory = file("$projectDir/test-output")
+    }
+    testClassesDirs = sourceSets.main.output.classesDirs
+    classpath = sourceSets.main.runtimeClasspath
+
+    // Add these lines for more verbose output
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+        showStandardStreams true
+    }
+}
